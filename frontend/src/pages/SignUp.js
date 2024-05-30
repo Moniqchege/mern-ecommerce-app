@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import loginIcons from '../assest/signin.gif'
 import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";import { Link } from 'react-router-dom'
+import { FaEyeSlash } from "react-icons/fa";
+import { Link, useNavigate } from 'react-router-dom';
 import imageTobase64 from '../helpers/imageTobase64';
+import SummaryApi from '../common';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
   const [showPassword,setShowPassword] = useState(false)
@@ -14,35 +17,64 @@ const SignUp = () => {
       confirmPassword : "",
       profilePic : "",
   })
+  const navigate = useNavigate()
 
   const handleOnChange = (e) =>{
-    const { name , value } = e.target
+      const { name , value } = e.target
 
+      setData((preve)=>{
+          return{
+              ...preve,
+              [name] : value
+          }
+      })
+  }
+
+  const handleUploadPic = async(e) =>{
+    const file = e.target.files[0]
+    
+    const imagePic = await imageTobase64(file)
+    
     setData((preve)=>{
-        return{
-            ...preve,
-            [name] : value
-        }
+      return{
+        ...preve,
+        profilePic : imagePic
+      }
     })
-}
 
-const handleUploadPic = async(e) =>{
-  const file = e.target.files[0]
-  
-  const imagePic = await imageTobase64(file)
-  
-  setData((preve)=>{
-    return{
-      ...preve,
-      profilePic : imagePic
-    }
-  })
+  }
 
-}
 
-const handleSubmit = async(e) =>{
-  e.preventDefault()
-}
+  const handleSubmit = async(e) =>{
+      e.preventDefault()
+
+      if(data.password === data.confirmPassword){
+
+        const dataResponse = await fetch(SummaryApi.signUP.url,{
+            method : SummaryApi.signUP.method,
+            headers : {
+                "content-type" : "application/json"
+            },
+            body : JSON.stringify(data)
+          })
+    
+          const dataApi = await dataResponse.json()
+
+          if(dataApi.success){
+            toast.success(dataApi.message)
+            navigate("/login")
+          }
+
+          if(dataApi.error){
+            toast.error(dataApi.message)
+          }
+    
+      }else{
+        toast.error("Please check password and confirm password")
+      }
+
+  }
+
   return (
     <section id='signup'>
         <div className='mx-auto container p-4'>
@@ -58,7 +90,7 @@ const handleSubmit = async(e) =>{
                             <div className='text-xs bg-opacity-80 bg-slate-200 pb-4 pt-2 cursor-pointer text-center absolute bottom-0 w-full'>
                               Upload  Photo
                             </div>
-                            <input type='file' className='hidden' onChange={handleUploadPic} />
+                            <input type='file' className='hidden' onChange={handleUploadPic}/>
                           </label>
                         </form>
                     </div>
