@@ -70,7 +70,7 @@ const SignUp = () => {
           }
     
       }else{
-        toast.error("Please check password and confirm password")
+        toast.error("Please check password")
       }
 
   }
