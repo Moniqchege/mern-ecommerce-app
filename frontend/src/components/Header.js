@@ -17,23 +17,26 @@ const Header = () => {
   const [menuDisplay, setMenuDisplay] = useState(false)
 
 
+
   console.log("user header", user)
 
-  const handleLogout = async () => {
-    const fetchData = await fetch(SummaryApi.logout_user.url, {
-      method: SummaryApi.logout_user.method,
-      credentials: 'include'
+  const handleLogout = async() => {
+    const fetchData = await fetch(SummaryApi.logout_user.url,{
+      method : SummaryApi.logout_user.method,
+      credentials : 'include'
     })
 
     const data = await fetchData.json()
 
-    if (data.success) {
+    if(data.success){
       toast.success(data.message)
       dispatch(setUserDetails(null))
     }
-    if (data.error) {
+
+    if(data.error){
       toast.error(data.message)
     }
+
   }
   return (
     <header className='h-16 shadow-md bg-white'>
@@ -91,15 +94,15 @@ const Header = () => {
           </div>
 
           <div>
-            {
-              user?._id ? (
-                <button onClick={handleLogout} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Logout</button>
-              )
-                : (
-                  <Link to={"/login"} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Login</Link>
-                )
-            }
-          </div>
+                  {
+                    user?._id  ? (
+                      <button onClick={handleLogout} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Logout</button>
+                    ):(
+                    <Link to={"/login"} className='px-3 py-1 rounded-full text-white bg-red-600 hover:bg-red-700'>Login</Link>
+                    )
+                  }
+                    
+                </div>
 
         </div>
       </div>
