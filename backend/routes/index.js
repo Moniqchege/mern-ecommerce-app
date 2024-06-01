@@ -2,11 +2,11 @@ const express = require('express')
 
 const router = express.Router()
 
-const userSignUpController = require("../controller/userSignUp")
-const userSignInController = require('../controller/userSignIn')
-const userDetailsController = require('../controller/userDetails')
+const userSignUpController = require("../controller/user/userSignUp")
+const userSignInController = require('../controller/user/userSignIn')
+const userDetailsController = require('../controller/user/userDetails')
 const authToken = require('../middleware/authToken')
-const userLogout = require('../controller/userLogout')
+const userLogout = require('../controller/user/userLogout')
 
 router.post("/signup",userSignUpController)
 router.post("/signin",userSignInController)
