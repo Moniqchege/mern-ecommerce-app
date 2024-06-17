@@ -14,17 +14,17 @@
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "http://localhost:3000/api/$1" },
-    { "src": "/login", "dest": "http://localhost:3000/" },
-    { "src": "/forgot-password", "dest": "http://localhost:3000/" },
-    { "src": "/sign-up", "dest": "http://localhost:3000/" },
-    { "src": "/product-category", "dest": "http://localhost:3000/" },
-    { "src": "/product/:id", "dest": "http://localhost:3000/" },
-    { "src": "/cart", "dest": "http://localhost:3000/" },
-    { "src": "/search", "dest": "http://localhost:3000/" },
-    { "src": "/admin-panel", "dest": "http://localhost:3000/" },
-    { "src": "/admin-panel/all-users", "dest": "http://localhost:3000/" },
-    { "src": "/admin-panel/all-products", "dest": "http://localhost:3000/" },
-    { "src": "/(.*)", "dest": "http://localhost:3000/" }
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/login", "dest": "/" },
+    { "src": "/forgot-password", "dest": "/" },
+    { "src": "/sign-up", "dest": "/" },
+    { "src": "/product-category", "dest": "/" },
+    { "src": "/product/:id", "dest": "/" },
+    { "src": "/cart", "dest": "/" },
+    { "src": "/search", "dest": "/" },
+    { "src": "/admin-panel", "dest": "/" },
+    { "src": "/admin-panel/all-users", "dest": "/" },
+    { "src": "/admin-panel/all-products", "dest": "/" },
+    { "src": "/(.*)", "dest": "/" }
   ]
 }
