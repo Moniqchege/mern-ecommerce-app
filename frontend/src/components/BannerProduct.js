@@ -42,7 +42,7 @@ const BannerProduct = () => {
     }
 
     const preveImage = () =>{
-        if(currentImage != 0){
+        if(currentImage !== 0){
             setCurrentImage(preve => preve - 1)
         }
     }
@@ -58,6 +58,7 @@ const BannerProduct = () => {
         },5000)
 
         return ()=> clearInterval(interval)
+        // eslint-disable-next-line
     },[currentImage])
 
   return (
@@ -77,7 +78,7 @@ const BannerProduct = () => {
                         desktopImages.map((imageURl,index)=>{
                             return(
                             <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style={{transform : `translateX(-${currentImage * 100}%)`}}>
-                                <img src={imageURl} className='w-full h-full'/>
+                                <img src={imageURl} alt='' className='w-full h-full'/>
                             </div>
                             )
                         })
@@ -91,7 +92,7 @@ const BannerProduct = () => {
                         mobileImages.map((imageURl,index)=>{
                             return(
                             <div className='w-full h-full min-w-full min-h-full transition-all' key={imageURl} style={{transform : `translateX(-${currentImage * 100}%)`}}>
-                                <img src={imageURl} className='w-full h-full object-cover'/>
+                                <img src={imageURl} alt='' className='w-full h-full object-cover'/>
                             </div>
                             )
                         })

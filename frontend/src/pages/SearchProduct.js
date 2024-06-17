@@ -21,6 +21,7 @@ const SearchProduct = () => {
 
     useEffect(()=>{
         fetchProduct()
+        // eslint-disable-next-line
     },[query])
 
   return (

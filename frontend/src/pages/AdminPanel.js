@@ -13,6 +13,7 @@ const AdminPanel = () => {
         if(user?.role !== ROLE.ADMIN){
           navigate("/")
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       },[user])
 
   return (

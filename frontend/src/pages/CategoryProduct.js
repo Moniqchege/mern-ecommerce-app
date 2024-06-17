@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import productCategory from '../helpers/productCategory'
 import VerticalCard from '../components/VerticalCard'
 import SummaryApi from '../common'
@@ -23,6 +23,7 @@ const CategoryProduct = () => {
     const [sortBy,setSortBy] = useState("")
 
     const fetchData = async()=>{
+      setLoading(true); 
       const response = await fetch(SummaryApi.filterProduct.url,{
         method : SummaryApi.filterProduct.method,
         headers : {
@@ -32,24 +33,25 @@ const CategoryProduct = () => {
           category : filterCategoryList
         })
       })
+      setLoading(false); 
 
       const dataResponse = await response.json()
       setData(dataResponse?.data || [])
     }
 
-    const handleSelectCategory = (e) =>{
-      const {name , value, checked} =  e.target
-
-      setSelectCategory((preve)=>{
-        return{
-          ...preve,
-          [value] : checked
-        }
-      })
-    }
+    const handleSelectCategory = (e) => {
+      const { value, checked } = e.target; 
+  
+      setSelectCategory((prev) => ({
+          ...prev,
+          [value]: checked
+      }));
+  };
+  
 
     useEffect(()=>{
       fetchData()
+     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[filterCategoryList])
 
     useEffect(()=>{
@@ -71,7 +73,7 @@ const CategoryProduct = () => {
       })
 
       navigate("/product-category?"+urlFormat.join(""))
-    },[selectCategory])
+    },[selectCategory, navigate])
 
 
     const handleOnChangeSortBy = (e)=>{
