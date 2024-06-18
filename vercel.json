@@ -14,18 +14,17 @@
     }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "backend/index.js" },
-    { "src": "/(.*)", "dest": "frontend/build/$1" },
-    { "src": "/login", "dest": "/" },
-    { "src": "/forgot-password", "dest": "/" },
-    { "src": "/sign-up", "dest": "/" },
-    { "src": "/product-category", "dest": "/" },
-    { "src": "/product/:id", "dest": "/" },
-    { "src": "/cart", "dest": "/" },
-    { "src": "/search", "dest": "/" },
-    { "src": "/admin-panel", "dest": "/" },
-    { "src": "/admin-panel/all-users", "dest": "/" },
-    { "src": "/admin-panel/all-products", "dest": "/" },
-    { "src": "/(.*)", "dest": "/" }
+    { "src": "/api/(.*)", "dest": "/backend/index.js" },
+    { "src": "/login", "dest": "/frontend/build/index.html" },
+    { "src": "/forgot-password", "dest": "/frontend/build/index.html" },
+    { "src": "/sign-up", "dest": "/frontend/build/index.html" },
+    { "src": "/product-category", "dest": "/frontend/build/index.html" },
+    { "src": "/product/:id", "dest": "/frontend/build/index.html" },
+    { "src": "/cart", "dest": "/frontend/build/index.html" },
+    { "src": "/search", "dest": "/frontend/build/index.html" },
+    { "src": "/admin-panel", "dest": "/frontend/build/index.html" },
+    { "src": "/admin-panel/all-users", "dest": "/frontend/build/index.html" },
+    { "src": "/admin-panel/all-products", "dest": "/frontend/build/index.html" },
+    { "src": "/(.*)", "dest": "/frontend/build/index.html" }
   ]
 }
